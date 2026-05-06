@@ -1,0 +1,28 @@
+{
+  "name": "ulriken-aktiv-fritid-driftsmodell",
+  "version": "1.0.0",
+  "description": "Nettside for Ulriken Aktiv Fritid - driftsmodell og organisering",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ulriken-aktiv-fritid/driftsmodell.git"
+  },
+  "keywords": [
+    "ulriken",
+    "aktiv",
+    "fritid",
+    "skiskole",
+    "driftsmodell"
+  ],
+  "author": "Ulriken Aktiv Fritid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ulriken-aktiv-fritid/driftsmodell/issues"
+  },
+  "homepage": "https://ulriken-aktiv-fritid.github.io/driftsmodell/"
+}

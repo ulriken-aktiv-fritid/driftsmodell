@@ -14,10 +14,15 @@
     }
 
     header{
-      background:#1d3557;
+      background:#d32f2f;
       color:white;
       padding:60px 20px;
       text-align:center;
+    }
+
+    header img{
+      max-width:100px;
+      margin-bottom:20px;
     }
 
     header h1{
@@ -46,7 +51,7 @@
     }
 
     h2{
-      color:#1d3557;
+      color:#d32f2f;
       margin-top:0;
     }
 
@@ -55,11 +60,97 @@
     }
 
     footer{
-      background:#1d3557;
+      background:#d32f2f;
       color:white;
       text-align:center;
       padding:20px;
       margin-top:40px;
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      margin-bottom:30px;
+      border-bottom:2px solid #ddd;
+      flex-wrap:wrap;
+    }
+
+    .tab-button{
+      padding:12px 25px;
+      border:none;
+      background:none;
+      cursor:pointer;
+      font-size:16px;
+      color:#666;
+      border-bottom:3px solid transparent;
+      transition:all 0.3s;
+    }
+
+    .tab-button:hover{
+      color:#d32f2f;
+    }
+
+    .tab-button.active{
+      color:#d32f2f;
+      border-bottom-color:#d32f2f;
+      font-weight:bold;
+    }
+
+    .tab-content{
+      display:none;
+    }
+
+    .tab-content.active{
+      display:block;
+    }
+
+    .org-chart{
+      background:white;
+      padding:40px;
+      border-radius:14px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .org-level{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .org-box{
+      display:inline-block;
+      background:#d32f2f;
+      color:white;
+      padding:15px 25px;
+      border-radius:8px;
+      margin:10px;
+      min-width:180px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .org-title{
+      font-weight:bold;
+      font-size:14px;
+      margin-bottom:5px;
+    }
+
+    .org-name{
+      font-size:12px;
+      opacity:0.9;
+    }
+
+    .org-line{
+      height:30px;
+      width:2px;
+      background:#ccc;
+      margin:0 auto;
+    }
+
+    .org-row{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
     }
   </style>
 </head>
@@ -73,52 +164,174 @@
 
 <div class="container">
 
-  <div class="card">
-    <h2>Formål</h2>
-    <p>
-      Ulriken Aktiv Fritid skal skape aktivitet, mestring,
-      fellesskap og gode opplevelser for barn, ungdom og voksne.
-    </p>
+  <div class="tabs">
+    <button class="tab-button active" onclick="switchTab(event, 'om')">Om oss</button>
+    <button class="tab-button" onclick="switchTab(event, 'org')">Organisasjonskart</button>
+    <button class="tab-button" onclick="switchTab(event, 'drift')">Driftsmodell</button>
+    <a href="vedtekter.html" class="tab-button" style="text-decoration: none;">Vedtekter</a>
   </div>
 
-  <div class="card">
-    <h2>Driftsmodell</h2>
+  <!-- Om oss tab -->
+  <div id="om" class="tab-content active">
+    <div class="card">
+      <h2>Formål</h2>
+      <p>
+        Ulriken Aktiv Fritid skal skape aktivitet, mestring,
+        fellesskap og gode opplevelser for barn, ungdom og voksne.
+      </p>
+    </div>
 
-    <ul>
-      <li>Frivillig drevet organisasjon</li>
-      <li>Tydelige roller og ansvar</li>
-      <li>Standardiserte rutiner</li>
-      <li>Digitale arbeidsflater og AI-støtte</li>
-      <li>Kontinuerlig forbedring</li>
-    </ul>
+    <div class="card">
+      <h2>Hovedområder</h2>
+
+      <ul>
+        <li>Instruktører og opplæring</li>
+        <li>Arrangementer og aktiviteter</li>
+        <li>Økonomi og administrasjon</li>
+        <li>Kommunikasjon og markedsføring</li>
+        <li>Skiskole og fritidsaktiviteter</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Ulriken Skiskole</h2>
+
+      <p>
+        I Bergensområdet har man i dag få alternativer til skiopplæring for barn. Enten kan man benytte seg av sporadiske kurs i på et vintersport sted, eller man melde seg inn et skilag og begynne å trene aktivt. Ulriken skiskole skal være et alternativ mellom disse ytterpunktene, hvor konkurranse ikke er målet med aktiviteten.
+      </p>
+
+      <p>
+        Ulriken skiskole ønsker å bidra til at barn og unge i Bergensområde kan få oppleve skiglede på deres egne premisser. Våre instruktører skal formidle god ski teknikk på en leken måte. Elever hos Ulriken skiskolen skal oppleve utvikling av sine skiferdigheter og mestring av nye utfordringer.
+      </p>
+
+      <p>
+        Vår opplæring skal være strukturert, profesjonell og morsom. Vi bruker hele løypen, også stier, kuleløyper, hopp, skog, porter og løssnø. Sikkerhet er alltid i fokus, og ingen barn skal føle seg presset til utfordringer de ikke kan mestre.
+      </p>
+
+      <p>
+        Ulriken skiskole arrangerer skiskole i Eikedalen og turer til Mjølfjell for Landås skole. Ulriken skiskole er et prosjekt i regi av Ulriken Aktiv Fritid. Ulriken Aktiv Fritid er en forening startet for å fremme aktiviteter i Bergensområdet, aktiviteter ved siden av, og i tillegg til den organiserte idrettsaktiviteten. Ulriken Aktiv Fritid har ikke-ervervsmessige formål og drives på bakgrunn av idealisme.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Videre arbeid</h2>
+
+      <p>
+        Denne siden skal videreutvikles med:
+      </p>
+
+      <ul>
+        <li>Årshjul</li>
+        <li>Rutinebeskrivelser</li>
+        <li>Påmeldingsløsninger</li>
+        <li>AI-assistenter og automatisering</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Hovedområder</h2>
+  <!-- Organisasjonskart tab -->
+  <div id="org" class="tab-content">
+    <div class="org-chart">
+      <h2>Organisasjonskart - Ulriken Aktiv Fritid</h2>
 
-    <ul>
-      <li>Instruktører og opplæring</li>
-      <li>Arrangementer og aktiviteter</li>
-      <li>Økonomi og administrasjon</li>
-      <li>Kommunikasjon og markedsføring</li>
-      <li>Skiskole og fritidsaktiviteter</li>
-    </ul>
+      <div class="org-level">
+        <div class="org-box">
+          <div class="org-title">Styret</div>
+          <div class="org-name">5 medlemmer</div>
+        </div>
+      </div>
+
+      <div class="org-line"></div>
+
+      <div class="org-level">
+        <div class="org-row">
+          <div class="org-box">
+            <div class="org-title">Daglig leder</div>
+            <div class="org-name">Leder av ledergruppen</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="org-line"></div>
+
+      <div class="org-level">
+        <div class="org-row">
+          <div class="org-box">
+            <div class="org-title">Skiskolen<br>Barn og unge</div>
+            <div class="org-name">Ansvarlig</div>
+          </div>
+
+          <div class="org-box">
+            <div class="org-title">Skiskolen<br>Voksne</div>
+            <div class="org-name">Ansvarlig</div>
+          </div>
+
+          <div class="org-box">
+            <div class="org-title">Mjølfjellturer</div>
+            <div class="org-name">Ansvarlig</div>
+          </div>
+
+          <div class="org-box">
+            <div class="org-title">Leder<br>Ulriken Master</div>
+            <div class="org-name">Leder</div>
+          </div>
+
+          <div class="org-box">
+            <div class="org-title">Medlemsansvarlig</div>
+            <div class="org-name">Administrasjon</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="org-row">
+        <div class="org-box">
+          <div class="org-title">Øk ansvarlig</div>
+          <div class="org-name">Økonomi</div>
+        </div>
+
+        <div class="org-box">
+          <div class="org-title">Tur og<br>arrangementsansvarlig</div>
+          <div class="org-name">Arrangementer</div>
+        </div>
+
+        <div class="org-box">
+          <div class="org-title">System og<br>teknologiansvarlig</div>
+          <div class="org-name">Teknologi</div>
+        </div>
+
+        <div class="org-box">
+          <div class="org-title">Prosjektanvarlig</div>
+          <div class="org-name">Prosjekter</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Videre arbeid</h2>
+  <!-- Driftsmodell tab -->
+  <div id="drift" class="tab-content">
+    <div class="card">
+      <h2>Driftsmodell</h2>
 
-    <p>
-      Denne siden skal videreutvikles med:
-    </p>
+      <ul>
+        <li>Frivillig drevet organisasjon</li>
+        <li>Tydelige roller og ansvar</li>
+        <li>Standardiserte rutiner</li>
+        <li>Digitale arbeidsflater og AI-støtte</li>
+        <li>Kontinuerlig forbedring</li>
+      </ul>
+    </div>
 
-    <ul>
-      <li>Årshjul</li>
-      <li>Organisasjonskart</li>
-      <li>Rutinebeskrivelser</li>
-      <li>Påmeldingsløsninger</li>
-      <li>AI-assistenter og automatisering</li>
-    </ul>
+    <div class="card">
+      <h2>Nøkkelprinsipper</h2>
+
+      <ul>
+        <li><strong>Frivillighet:</strong> Alle bidrag er basert på frivillighet</li>
+        <li><strong>Transparens:</strong> Åpen og ærlig kommunikasjon</li>
+        <li><strong>Inklusivitet:</strong> Alle er velkomne</li>
+        <li><strong>Bærekraft:</strong> Ansvarlig bruk av ressurser</li>
+        <li><strong>Innovasjon:</strong> Åpen for nye idéer</li>
+      </ul>
+    </div>
   </div>
 
 </div>
@@ -126,6 +339,22 @@
 <footer>
   Ulriken Aktiv Fritid © 2026
 </footer>
+
+<script>
+  function switchTab(evt, tabName) {
+    // Skjul alle tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active'));
+
+    // Fjern active fra alle knapper
+    const buttons = document.querySelectorAll('.tab-button');
+    buttons.forEach(button => button.classList.remove('active'));
+
+    // Vis valgt tab og marker knapp som aktiv
+    document.getElementById(tabName).classList.add('active');
+    evt.currentTarget.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
