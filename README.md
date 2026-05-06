@@ -40,12 +40,24 @@ Hvis du vil publisere til en annen plattform:
 - `vedtekter.html` - Foreningens vedtekter
 - Ingen eksterne avhengigheter - siden fungerer offline
 
-## Bidra
+## Bidra til vedtektene
 
-For å bidra til utviklingen av siden:
-1. Fork repository
-2. Gjør endringer
-3. Send pull request
+Vedtekter-siden har en innebygd revisjonsfunksjonalitet hvor besøkende kan foreslå endringer:
+
+- **Foreslå endring**: Klikk på "✏️ Endre" ved hver paragraf
+- **Foreslå fjerning**: Klikk på "🗑️ Fjern" ved hver paragraf
+- **Foreslå ny paragraf**: Bruk "➕ Foreslå ny paragraf" knappen
+- **Generell kommentar**: Bruk kommentarfeltet nederst på siden
+
+Alle forslag opprettes som GitHub Issues med pre-filled templates.
+
+### GitHub Labels for vedtektsendringer
+
+For å organisere vedtektsforslag, opprett følgende labels i GitHub repository:
+
+- `vedtektsendring` - For forslag til endringer i vedtekter
+- `kommentar` - For generelle kommentarer
+- `ny-paragraf` - For forslag til nye paragrafer
 
 ## Lisens
 
