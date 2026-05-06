@@ -81,6 +81,134 @@
     .back-link:hover{
       text-decoration:underline;
     }
+
+    .revision-section{
+      background:#fff3cd;
+      border:1px solid #ffeaa7;
+      border-radius:8px;
+      padding:20px;
+      margin:30px 0;
+    }
+
+    .revision-section h3{
+      color:#856404;
+      margin-top:0;
+      font-size:18px;
+    }
+
+    .revision-buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:15px 0;
+    }
+
+    .revision-btn{
+      background:#007bff;
+      color:white;
+      border:none;
+      padding:8px 16px;
+      border-radius:4px;
+      cursor:pointer;
+      font-size:14px;
+      text-decoration:none;
+      display:inline-block;
+      transition:background 0.3s;
+    }
+
+    .revision-btn:hover{
+      background:#0056b3;
+    }
+
+    .revision-btn.edit{
+      background:#28a745;
+    }
+
+    .revision-btn.edit:hover{
+      background:#1e7e34;
+    }
+
+    .revision-btn.remove{
+      background:#dc3545;
+    }
+
+    .revision-btn.remove:hover{
+      background:#bd2130;
+    }
+
+    .revision-form{
+      margin-top:20px;
+      padding:20px;
+      background:white;
+      border-radius:8px;
+      border:1px solid #ddd;
+    }
+
+    .revision-form textarea{
+      width:100%;
+      min-height:100px;
+      padding:10px;
+      border:1px solid #ddd;
+      border-radius:4px;
+      font-family:Arial, sans-serif;
+      resize:vertical;
+    }
+
+    .revision-form input[type="email"]{
+      width:100%;
+      padding:10px;
+      border:1px solid #ddd;
+      border-radius:4px;
+      margin:10px 0;
+    }
+
+    .revision-form button{
+      background:#d32f2f;
+      color:white;
+      border:none;
+      padding:12px 24px;
+      border-radius:4px;
+      cursor:pointer;
+      font-size:16px;
+      margin-top:10px;
+    }
+
+    .revision-form button:hover{
+      background:#b71c1c;
+    }
+
+    .section-actions{
+      position:relative;
+      margin:20px 0;
+    }
+
+    .section-actions .revision-buttons{
+      position:absolute;
+      right:0;
+      top:-10px;
+      opacity:0;
+      transition:opacity 0.3s;
+    }
+
+    .section-actions:hover .revision-buttons{
+      opacity:1;
+    }
+
+    h2{
+      position:relative;
+    }
+
+    h2 .revision-buttons{
+      position:absolute;
+      right:0;
+      top:0;
+      opacity:0;
+      transition:opacity 0.3s;
+    }
+
+    h2:hover .revision-buttons{
+      opacity:1;
+    }
   </style>
 </head>
 
@@ -98,46 +226,110 @@
   <div class="card">
     <h1>Vedtekter for foreningen Ulriken Aktiv Fritid</h1>
 
-    <h2>§ 1 Foreningens navn og registrering</h2>
+    <div class="revision-section">
+      <h3>📝 Bidra til vedtektene</h3>
+      <p>Du kan foreslå endringer i vedtektene ved å klikke på "Foreslå endring"-knappene ved hver paragraf. Forslagene blir opprettet som issues på GitHub hvor de kan diskuteres.</p>
+
+      <div class="revision-buttons">
+        <button class="revision-btn" onclick="suggestEdit('generelt', 'add')" style="background:#17a2b8;">➕ Foreslå ny paragraf</button>
+      </div>
+    </div>
+
+    <h2 id="navn">§ 1 Foreningens navn og registrering
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('navn', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('navn', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Foreningens navn er: Ulriken Aktiv Fritid og ble stiftet 15.01.2012.</p>
     <p>Registrert som ideell forening i Brønnøysundregisteret 31.01.2012, Organisasjonsnr: 997 904 915</p>
     <p>Foreningen er registrert i Frivillighetsregisteret fra 08.06.2017</p>
 
     <h2>§ 2 Formål</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('formaal', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('formaal', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Foreningens formål er å arrangere mestringskurs i ulike friluftsaktiviteter for barn og unge i Hordaland</p>
 
     <h2>§ 3 Juridisk person</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('juridisk', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('juridisk', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Foreningen er selveiende og en frittstående juridisk person med upersonlig og begrenset ansvar for gjeld.</p>
 
     <h2>§ 4 Medlemmer</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('medlemmer', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('medlemmer', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Alle barn og voksne som har interesse for og ønske om å utforske ulike former for friluftsaktiviteter</p>
 
     <h2>§ 5 Stemmerett og valgbarhet</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('stemmerett', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('stemmerett', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Alle medlemmer har stemmerett og er valgbare til tillitsverv i foreningen.</p>
 
     <h2>§ 6 Kontingent</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('kontingent', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('kontingent', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Kontingenten fastsettes av årsmøtet og betales forskuddsvis.</p>
     <p>Medlemmer som skylder kontingent for mer enn ett år, har ikke stemmerett eller andre rettigheter, og kan av styret strykes som medlem av foreningen. Strykes et medlem, kan det ikke tas opp igjen før skyldig kontingent er betalt.</p>
 
     <h2>§ 7 Tillitsvalgtes godtgjørelse</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('godtgjoerelse', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('godtgjoerelse', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Styregodtgjørelse utgjør 7000 kr årlig pr styremedlem dersom økonomien tillater det.</p>
     <p>Andre tillitsvalgte skal ikke motta honorar for sine verv.</p>
 
     <h2>§ 8 Årsmøte</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('aarsmoete', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('aarsmoete', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Årsmøtet, som holdes hvert år i april måned, er foreningens høyeste myndighet.</p>
     <p>Årsmøtet innkalles av styret med minst 1 måneds varsel, direkte til medlemmene og/eller ved kunngjøring i pressen. Forslag som skal behandles på årsmøtet skal være sendt til styret senest 2 uker før årsmøtet. Fullstendig saksliste må være tilgjengelig for medlemmene senest 1 uke før årsmøtet. Alle medlemmer har adgang til årsmøtet. Årsmøtet kan invitere andre personer og/eller media til å være til stede.</p>
     <p>Årsmøtet er vedtaksdyktig med det antall stemmeberettigede medlemmer som møter. Ingen har mer enn én stemme, og stemmegivning kan ikke skje ved fullmakt. På årsmøtet kan ikke behandles forslag om vedtektsendring som ikke er oppført på sakslisten senest 1 uke før årsmøtet. Andre saker kan behandles og avgjøres når 2/3 av de fremmøtte krever det. Slik beslutning kan bare tas i forbindelse med godkjenning av sakslisten.</p>
 
     <h2>§ 9 Ledelse av årsmøtet</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('ledelse', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('ledelse', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Årsmøtet ledes av valgt dirigent. Dirigenten behøver ikke å være medlem av Ulriken Aktiv Fritid</p>
 
     <h2>§ 10 Stemmegivning på årsmøtet</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('stemmegivning', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('stemmegivning', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Med mindre annet er bestemt skal et vedtak for å være gyldig være truffet med alminnelig flertall av de avgitte stemmene. Blanke stemmer skal anses som ikke avgitt.</p>
     <p>Valg foregår skriftlig hvis det foreligger mer enn ett forslag. Bare foreslåtte kandidater kan føres opp på stemmeseddelen. Skal flere velges ved samme avstemming, må stemmesedlene inneholde det antall forskjellige kandidater som det skal velges ved vedkommende avstemming. Stemmesedler som er blanke, eller som inneholder ikke foreslåtte kandidater, eller annet antall kandidater enn det som skal velges, teller ikke, og stemmene anses som ikke avgitt.</p>
     <p>Når et valg foregår enkeltvis og en kandidat ikke oppnår mer enn halvparten av de oppgitte stemmene, foretas bundet omvalg mellom de to kandidatene som har oppnådd flest stemmer. Er det ved omvalg stemmelikhet, avgjøres valget ved loddtrekning.</p>
     <p>Når det ved valg skal velges flere ved en avstemming, må alle for å anses valgt ha mer enn halvparten av de avgitte stemmene. Dette gjelder ikke ved valg av vararepresentanter. Hvis ikke tilstrekkelig mange kandidater har oppnådd dette i første omgang, anses de valgt som har fått mer enn halvparten av stemmene. Det foretas så bundet omvalg mellom de øvrige kandidatene, og etter denne avstemmingen anses de valgt som har fått flest stemmer. Er det ved omvalg stemmelikhet, avgjøres valget ved loddtrekning.</p>
 
     <h2>§ 11 Årsmøtets oppgaver</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('oppgaver', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('oppgaver', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>1. Behandle årsmelding</p>
     <p>2. Behandle regnskap</p>
     <p>3. Behandle innkomne forslag</p>
@@ -148,11 +340,21 @@
     <p>&nbsp;&nbsp;&nbsp;&nbsp;b) Revisor</p>
 
     <h2>§ 12 Ekstraordinære årsmøter</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('ekstra', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('ekstra', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Ekstraordinære årsmøter holdes når styret bestemmer det, eller minst en tredjedel av de stemmeberettigede medlemmene krever det.</p>
     <p>Det innkalles på samme måte som for ordinære årsmøter, med minst 14 dagers varsel.</p>
     <p>Ekstraordinært årsmøte kan bare behandle og ta avgjørelse i de sakene som er kunngjort i innkallingen.</p>
 
     <h2>§ 13 Styret</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('styret', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('styret', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Foreningen ledes av et styre på 4 medlemmer. Styret er høyeste myndighet mellom årsmøtene. Styret skal ha følgende verv: Styreleder, Nestleder, Økonomiansvarlig og Kompetanseansvarlig.</p>
     <p>Styret skal:</p>
     <p>1. Iverksette årsmøtets bestemmelser.</p>
@@ -162,15 +364,55 @@
     <p>Styret skal holde møte når lederen forlanger det eller et flertall av styremedlemmene forlanger det. Styret er vedtaksdyktig når et flertall av styrets medlemmer er til stede. Vedtak fattes med flertall av de avgitte stemmene. Ved stemmelikhet teller møtelederens stemme dobbelt.</p>
 
     <h2>§ 14 Grupper /avdelinger</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('grupper', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('grupper', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Ulriken Aktiv Fritid kan organiseres med avdelinger og/eller grupper. Disse kan ledes av oppnevnte tillitspersoner eller av valgte styrer. Ulriken Aktiv Fritids årsmøte bestemmer opprettelsen av avdelinger/grupper, og hvordan disse skal organiseres og ledes.</p>
     <p>For avdelingers/gruppers økonomiske forpliktelser hefter hele Ulriken Aktiv Fritid, og avdelinger/grupper kan ikke inngå avtaler eller representere Ulriken Aktiv Fritid utad uten styrets godkjennelse.</p>
 
     <h2>§ 15 Vedtektsendring</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('endring', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('endring', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Endringer i disse vedtekter kan bare foretas på ordinært eller ekstraordinært årsmøte etter å ha vært på sakslisten, og det kreves 2/3 flertall av de avgitte stemmene.</p>
 
     <h2>§ 16 Oppløsning (§ 16 kan ikke endres.)</h2>
+      <div class="revision-buttons">
+        <button class="revision-btn edit" onclick="suggestEdit('opploesning', 'edit')">✏️ Endre</button>
+        <button class="revision-btn remove" onclick="suggestEdit('opploesning', 'remove')">🗑️ Fjern</button>
+      </div>
+    </h2>
     <p>Oppløsning av Ulriken Aktiv Fritid kan bare behandles på ordinært årsmøte. Blir oppløsning vedtatt med minst 2/3 flertall, innkalles ekstraordinært årsmøte 3 måneder senere.</p>
     <p>Sammenslutning med andre foreninger anses ikke som oppløsning av Ulriken Aktiv Fritid. Vedtak om sammenslutning og nødvendige vedtektsendringer i tilknytning til dette treffes i samsvar med bestemmelsene om vedtektsendring, jfr. § 15.</p>
+  </div>
+
+  <div class="card">
+    <h2>💬 Kommentarer og forslag</h2>
+
+    <div class="revision-section">
+      <h3>Generell kommentar</h3>
+      <p>Har du generelle kommentarer til vedtektene eller ønsker å foreslå helt nye paragrafer?</p>
+
+      <div class="revision-form">
+        <textarea id="general-comment" placeholder="Skriv din kommentar eller forslag her..."></textarea>
+        <input type="email" id="commenter-email" placeholder="Din e-post (valgfritt)">
+        <button onclick="submitGeneralComment()">Send kommentar</button>
+      </div>
+    </div>
+
+    <div class="revision-section">
+      <h3>Hvordan fungerer dette?</h3>
+      <ul>
+        <li><strong>Endre:</strong> Foreslå endringer i eksisterende paragrafer</li>
+        <li><strong>Fjern:</strong> Foreslå at paragrafer fjernes</li>
+        <li><strong>Generell kommentar:</strong> Kommentarer som ikke passer inn i spesifikke paragrafer</li>
+      </ul>
+      <p>Alle forslag opprettes som GitHub Issues hvor de kan diskuteres og stemmes på av fellesskapet.</p>
+    </div>
   </div>
 
 </div>
@@ -178,6 +420,66 @@
 <footer>
   Ulriken Aktiv Fritid © 2026
 </footer>
+
+<script>
+  function suggestEdit(section, action) {
+    const sectionTitles = {
+      'navn': '§ 1 Foreningens navn og registrering',
+      'formaal': '§ 2 Formål',
+      'juridisk': '§ 3 Juridisk person',
+      'medlemmer': '§ 4 Medlemmer',
+      'stemmerett': '§ 5 Stemmerett og valgbarhet',
+      'kontingent': '§ 6 Kontingent',
+      'godtgjoerelse': '§ 7 Tillitsvalgtes godtgjørelse',
+      'aarsmoete': '§ 8 Årsmøte',
+      'ledelse': '§ 9 Ledelse av årsmøtet',
+      'stemmegivning': '§ 10 Stemmegivning på årsmøtet',
+      'oppgaver': '§ 11 Årsmøtets oppgaver',
+      'ekstra': '§ 12 Ekstraordinære årsmøter',
+      'styret': '§ 13 Styret',
+      'grupper': '§ 14 Grupper/avdelinger',
+      'endring': '§ 15 Vedtektsendring',
+      'opploesning': '§ 16 Oppløsning'
+    };
+
+    const title = sectionTitles[section] || section;
+    let body = '';
+
+    switch(action) {
+      case 'edit':
+        body = `**Foreslått endring i ${title}**\n\n**Nåværende tekst:**\n[Skriv inn nåværende tekst her]\n\n**Foreslått ny tekst:**\n[Skriv inn din foreslåtte endring her]\n\n**Begrunnelse:**\n[Fortell hvorfor denne endringen er nødvendig]`;
+        break;
+      case 'remove':
+        body = `**Foreslått fjerning av ${title}**\n\n**Begrunnelse for fjerning:**\n[Skriv hvorfor denne paragrafen bør fjernes]`;
+        break;
+      case 'add':
+        body = `**Foreslått tillegg til vedtektene**\n\n**Hvor skal tilleggs legges:**\n[Etter hvilken § eller hvor i vedtektene]\n\n**Foreslått ny tekst:**\n[Skriv inn teksten som skal legges til]\n\n**Begrunnelse:**\n[Fortell hvorfor dette tillegget er nødvendig]`;
+        break;
+    }
+
+    const url = `https://github.com/ulriken-aktiv-fritid/driftsmodell/issues/new?title=${encodeURIComponent(`Vedtektsendring: ${title}`)}&body=${encodeURIComponent(body)}&labels=vedtektsendring`;
+    window.open(url, '_blank');
+  }
+
+  function submitGeneralComment() {
+    const comment = document.getElementById('general-comment').value;
+    const email = document.getElementById('commenter-email').value;
+
+    if (!comment.trim()) {
+      alert('Vennligst skriv inn en kommentar');
+      return;
+    }
+
+    const body = `**Generell kommentar til vedtektene**\n\n**Kommentar:**\n${comment}\n\n**Kontaktinfo:** ${email || 'Ikke oppgitt'}`;
+
+    const url = `https://github.com/ulriken-aktiv-fritid/driftsmodell/issues/new?title=${encodeURIComponent('Generell kommentar til vedtekter')}&body=${encodeURIComponent(body)}&labels=kommentar`;
+    window.open(url, '_blank');
+
+    // Tøm feltene
+    document.getElementById('general-comment').value = '';
+    document.getElementById('commenter-email').value = '';
+  }
+</script>
 
 </body>
 </html></content>
