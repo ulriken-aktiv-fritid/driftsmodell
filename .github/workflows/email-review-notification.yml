@@ -1,0 +1,60 @@
+name: Notify changes by email
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize, ready_for_review]
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build email content
+        id: build_email
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
+            echo "subject=Review request: Pull request #${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            echo "En endring er foreslått i repository: $GITHUB_REPOSITORY" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "PR-tittel: ${{ github.event.pull_request.title }}" >> $GITHUB_OUTPUT
+            echo "PR-url: ${{ github.event.pull_request.html_url }}" >> $GITHUB_OUTPUT
+            echo "Diff: ${{ github.event.pull_request.html_url }}/files" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "Slik kan du godkjenne eller avvise endringen:" >> $GITHUB_OUTPUT
+            echo "- Åpne PR-en og bruk GitHub sin før/etter-visning" >> $GITHUB_OUTPUT
+            echo "- Kommenter og godkjenn i PR" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            REF_NAME=${GITHUB_REF#refs/heads/}
+            echo "subject=Endringsvarsel: Push til ${REF_NAME}" >> $GITHUB_OUTPUT
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            echo "En direkte push ble gjort til branch ${REF_NAME} i repository: $GITHUB_REPOSITORY" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "Commit: https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}" >> $GITHUB_OUTPUT
+            echo "Diff: https://github.com/${GITHUB_REPOSITORY}/compare/${GITHUB_SHA}^...${GITHUB_SHA}" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "For å se før- og etter-tekst, åpne GitHub commit- eller compare-visningen." >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_HOST }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          secure: true
+          subject: ${{ steps.build_email.outputs.subject }}
+          body: ${{ steps.build_email.outputs.body }}
+          from: ${{ secrets.MAIL_FROM }}
+          to: jorgen.nordahl@ulrikenskiskole.no
+          content_type: text/plain

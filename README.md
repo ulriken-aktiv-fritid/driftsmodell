@@ -59,6 +59,20 @@ For å organisere vedtektsforslag, opprett følgende labels i GitHub repository:
 - `kommentar` - For generelle kommentarer
 - `ny-paragraf` - For forslag til nye paragrafer
 
+## E-postvarsler for endringer
+
+Det er nå satt opp en GitHub Actions workflow som sender e-post til `jorgen.nordahl@ulrikenskiskole.no` når det opprettes eller oppdateres en pull request, eller når det push-es til `main`.
+
+For å aktivere dette må du legge til følgende secrets i repository under `Settings > Secrets and variables > Actions`:
+
+- `SMTP_HOST` - SMTP-server
+- `SMTP_PORT` - SMTP-port (f.eks. 465 eller 587)
+- `SMTP_USERNAME` - SMTP-brukernavn
+- `SMTP_PASSWORD` - SMTP-passord
+- `MAIL_FROM` - e-postadresse som skal være avsender
+
+Workflown ligger i `.github/workflows/email-review-notification.yml`.
+
 ## Lisens
 
 Dette prosjektet er åpent og fritt tilgjengelig for alle interesserte.
